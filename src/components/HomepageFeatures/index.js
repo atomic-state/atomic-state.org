@@ -7,7 +7,7 @@ const FeatureList = [
     title: "Easy to Use",
     description: (
       <>
-        The Atomic State api is very similar to the the state API in modern
+        The Atomic State API is very similar to the the state API in modern
         versions of React with hooks.
       </>
     ),
