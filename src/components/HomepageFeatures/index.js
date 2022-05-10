@@ -5,7 +5,6 @@ import styles from "./styles.module.css"
 const FeatureList = [
   {
     title: "Easy to Use",
-    Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,
     description: (
       <>
         The Atomic State api is very similar to the the state API in modern
@@ -15,7 +14,6 @@ const FeatureList = [
   },
   {
     title: "SSR ready",
-    Svg: require("@site/static/img/undraw_docusaurus_tree.svg").default,
     description: (
       <>
         SSR is supported with Atomic State, configuring default atoms' and
@@ -25,7 +23,6 @@ const FeatureList = [
   },
   {
     title: "More features",
-    Svg: require("@site/static/img/undraw_docusaurus_react.svg").default,
     description: (
       <>
         Support for actions (reducers), persistence, tabs synchronization in
