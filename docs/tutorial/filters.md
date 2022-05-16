@@ -106,6 +106,51 @@ export default function App() {
   )
 }
 ```
+As an example, let's filter only the completed todos:
+
+```jsx
+const COMPLETED = filter({
+  name: "COMPLETED",
+  get({ get }) {
+    const todos = get(TODOS)
+    return todos?.filter((todo) => todo.completed)
+  }
+})
+```
+
+And use it in a component, let's call it `ShowCompletedTodos`:
+
+```jsx
+function ShowCompletedTodos() {
+  const completedTodos = useFilter(COMPLETED)
+  return (
+    <div>
+      <b>Completed todos</b>
+      <ul>
+        {completedTodos.map((todo) => (
+          <li key={`completed-${todo.title}`}>{todo.title}</li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+```
+
+Adding it to our app:
+
+```jsx
+export default function App() {
+  return (
+    <div>
+      <ShowTotalTodos />
+      <AddTodoForm />
+      <ShowTodos />
+      <hr />
+      <ShowCompletedTodos />
+    </div>
+  )
+}
+```
 
 And this is our whole app so far:
 
@@ -123,7 +168,7 @@ const TODOS = atom({
         ...p,
         {
           title,
-          completed: false
+          completed: Math.random() > 0.5
         }
       ])
     }
@@ -133,9 +178,17 @@ const TODOS = atom({
 // Only returning the total todos
 const TOTAL_TODOS = filter({
   name: "TOTAL_TODOS",
-  get({ get }) {
+  async get({ get }) {
     const todos = get(TODOS)
     return todos?.length
+  }
+})
+
+const COMPLETED = filter({
+  name: "COMPLETED",
+  get({ get }) {
+    const todos = get(TODOS)
+    return todos?.filter((todo) => todo.completed)
   }
 })
 
@@ -177,13 +230,30 @@ function ShowTotalTodos() {
   return <p>Total todos: {totalTodos}</p>
 }
 
+function ShowCompletedTodos() {
+  const completedTodos = useFilter(COMPLETED)
+  return (
+    <div>
+      <b>Completed todos</b>
+      <ul>
+        {completedTodos.map((todo) => (
+          <li key={`completed-${todo.title}`}>{todo.title}</li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 export default function App() {
   return (
     <div>
       <ShowTotalTodos />
       <AddTodoForm />
       <ShowTodos />
+      <hr />
+      <ShowCompletedTodos />
     </div>
   )
 }
+
 ```
