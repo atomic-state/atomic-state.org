@@ -516,4 +516,4 @@ export default function App() {
 
 Congratulations! You just built a todo list with Atomic State.
 
-[Advanced features](/docs/tutorial/advanced)
+[Advanced features](/docs/category/advanced-features)
