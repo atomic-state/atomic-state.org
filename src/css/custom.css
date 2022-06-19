@@ -5,6 +5,7 @@
  */
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap");
 
 body,
 html {
@@ -34,4 +35,8 @@ html {
   --ifm-color-primary-lighter: #803ad0;
   --ifm-color-primary-lightest: #9d57ed;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+code {
+  font-family: "JetBrains Mono", monospace !important;
 }
