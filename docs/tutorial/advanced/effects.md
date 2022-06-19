@@ -9,11 +9,11 @@ Effects are special: they can prevent state updates from being 'commited' to the
 
 **Effects have to be included as an array of functions, using the `effects` property in an atom.**
 
-These effects have access to three props: `previousState`, `state` and `dispatch`.
+These effects have access to three props: `previous`, `state` and `dispatch`.
 
 Let's cover each of them
 
-### `previousState`
+### `previous`
 This is the state that is currently being hold in that atom. This can be pretty confusing, as this state is the current one, not exactly the previous one. But this should make sense in the `state` explanation
 
 ### `state`
@@ -22,7 +22,7 @@ This allows us to do some interesting things. For example:
 
 - **Prevent state updates**
   
-  If any of the actions returns `false`, the state update will be cancelled, and the re-renders that would have happened as a result of that state update, will **not** happen.
+  If any of the effects returns `false`, the state update will be cancelled, and the re-renders that would have happened as a result of that state update, will **not** happen.
 
     **Example**
 
@@ -36,14 +36,15 @@ This allows us to do some interesting things. For example:
     const TODOS = atom({
       name: "TODOS",
       default: [],
-      actions: [
+      effects: [
         ({ state }) => {
           // We are preventing the state update and possible react re-renders
-          // If we add a new todo and there are already 10, nothing will happen
+          // If we try to add a new todo and there are already 10, the state update will
+          // be cancelled and nothing will happen
           if (state.length > 10) return false
         },
-        ({ previousState, state }) => {
-          console.log({ previousState, state })
+        ({ previous, state }) => {
+          console.log({ previous, state })
         },
       ],
     })
@@ -51,7 +52,7 @@ This allows us to do some interesting things. For example:
 
 - **Update state**
   
-  These actions can also update the state, but **be careful**, using this wrong can create an infnite loop.
+  These effects can also update the state, but **be careful**, using this wrong can create an infnite loop.
 
     **Example**
 
@@ -65,8 +66,8 @@ This allows us to do some interesting things. For example:
     const TODOS = atom({
       name: "TODOS",
       default: [],
-      actions: [
-        ({ state, dispatch }) => {
+      effects: [
+        ({ state, dispatch, previous }) => {
           
           // ❌ don't do this
           dispatch(state.length === 10? []: state)
@@ -77,3 +78,5 @@ This allows us to do some interesting things. For example:
       ],
     })
     ```
+### `dispatch`
+This is the function that updates the state. The only argument it accepts is the new value for the state or a callback that returns the new state.
