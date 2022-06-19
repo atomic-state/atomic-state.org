@@ -4,7 +4,7 @@ sidebar_position: 0
 
 # Persistence
 
-An atom's value can be saved to localStorage. For that, you need to pass `persistence: true` to your atom.
+An atom's value can be saved to localStorage. For that, you need to pass `persist: true` to your atom.
 
 The value of the atom will be saved in JSON format, and its key in the `localStorage` object will be `store-` and the atom's name.
 
