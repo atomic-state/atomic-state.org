@@ -78,3 +78,5 @@ This allows us to do some interesting things. For example:
       ],
     })
     ```
+### `dispatch`
+This is the function that updates the state. The only argument it accepts is the new value for the state or a callback that returns the new state.
