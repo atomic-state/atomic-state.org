@@ -113,64 +113,8 @@ export default function App() {
 }
 ```
 
-As you can see, the `setTodos` works just the same as a `setState` function
+As you can see, the `setTodos` works just the same as a `setState` functio
 
-
-#### Initial value
-
-The `default` property can also be a sync/async function, or a function that returns a promise
-
-These are some valid cases of using a default state
-
-
-**Case 1** : normal
-
-```jsx
-// the default property will be available during render
-const tasks = atom({
-  name: "user_tasks",
-  default: []
-})
-```
-
-**Case 2** : using an async function
-
-```jsx
-// When the initial value resolves, all subscribers will be 'notified'
-// So they will have access to its resolved value. While it is resolving
-const user_info = atom({
-  name: "user_info",
-  default: async () => {
-    const res = await fetch("/backend/get_info?id=" + id)
-    const info = await res.json()
-    return info
-  }
-})
-```
-
-**Case 3**: a function that returns a Promise
-
-```jsx
-// This works the same as in case 2
-const user_info = atom({
-  name: "user_info",
-  default: () => {
-    const data = fetch("/backend/get_info?id=" + id).then((d) =>
-      d.json()
-    )
-    return data
-  }
-})
-```
-You can remove the return keyword from the last example
-
-```jsx
-// This works the same as in case 2 and 3
-const user_info = atom({
-  name: "user_info",
-  default: () => fetch("/backend/get_info?id=" + id).then((d) => d.json())
-})
-```
 
 #### Actions
 
