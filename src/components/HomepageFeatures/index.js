@@ -16,8 +16,7 @@ const FeatureList = [
     title: "SSR ready",
     description: (
       <>
-        SSR is supported with Atomic State, configuring default atoms' and
-        filters' values.
+        SSR is supported out of the box in Atomic State
       </>
     ),
   },

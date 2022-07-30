@@ -4,19 +4,19 @@ sidebar_position: 3
 
 # SSR
 
-Server side rendering is a very important feature in modern React applications. The `default` property of an atom is rendered in the server (this doesn't work with initial states that return promises or are async functions), but you can also use the `AtomicState` component provided by atomic-state.
+Server side rendering is a very important feature in modern React applications. The `default` property of an atom is rendered in the server, but you can also use the `AtomicState` component provided by atomic-state.
 
-This allows you to define default values for atoms and filters.
+This allows you to define default values for atoms.
 
-**This component needs to appear before any component that uses your atoms**
+**This component needs to appear before any component that uses atoms and filters**
 
 Example:
 
 ```jsx
 import { atom, useValue, AtomicState } from "atomic-state"
 
-const TODOS = atom({
-  name: "TODOS",
+const todosState = atom({
+  name: "todosState",
   // we are ommiting the default property, as its default value should be dynamic
   // and come from the server
 })
@@ -24,7 +24,9 @@ const TODOS = atom({
 
 
 function TodoWrapper() {
-  const todos = useValue(TODOS)
+
+  const todos = useValue(todosState)
+
   return (
     <div>
       <pre>{JSON.stringify(todos, null, 2)}</pre>
@@ -34,13 +36,18 @@ function TodoWrapper() {
 
 
 // Our App component uses the AtomicState component
-// before other components access our atoms.
+// before other components use our atoms.
 // This creates a good SSR
-export default function App({ todos }) {
+export default function App({ todosState }) {
   return (
     <AtomicState
+
+      // Optional: A different prefix allows you to have different
+      // state providers that are independent from each other
+      prefix="store"
+      
       atoms={{
-        todos,
+        todosState,
       }}
     >
       <TodoWrapper />
@@ -50,11 +57,12 @@ export default function App({ todos }) {
 
 // SSR example with Next.js
 export async function getServerSideProps(context) {
-  const userTodos = getTodosFromDb(context)
+
+  const userTodos = await getTodosFromDb(context)
 
   return {
     props: {
-      todos: userTodos,
+      todosState: userTodos,
     },
   }
 }

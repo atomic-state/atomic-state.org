@@ -6,15 +6,15 @@ sidebar_position: 0
 
 An atom's value can be saved to localStorage. For that, you need to pass `persist: true` to your atom.
 
-The value of the atom will be saved in JSON format, and its key in the `localStorage` object will be `store-` and the atom's name.
+The value of the atom will be saved in JSON format, and its key in the `localStorage` object will be `store` (or the `prefix` prop you can pass in the `AtomicState` component) plus `-` and then the atom's name.
 
 In our previous example, we had a todo app, and the atom that holds its state has an empty array as its default value
 
 ```js
 import { atom } from "atomic-state"
 
-const TODOS = atom({
-    name: "TODOS",
+const todosState = atom({
+    name: "todosState",
     default: []
 })
 ```
@@ -24,8 +24,8 @@ If we wanted its value to be persisted in localStorage, we can do so
 ```js
 import { atom } from "atomic-state"
 
-const TODOS = atom({
-    name: "TODOS",
+const todosState = atom({
+    name: "todosState",
     default: [],
     persist: true,
 })
@@ -38,8 +38,8 @@ We can also have a listener that will run when a tab is synchronized. This will 
 ```js
 import { atom } from "atomic-state"
 
-const TODOS = atom({
-    name: "TODOS",
+const todosState = atom({
+    name: "todosState",
     default: [],
     persist: true,
     onSync(synced) {
@@ -53,8 +53,8 @@ This can be ommited if you don't want them to be in sync.
 ```js
 import { atom } from "atomic-state"
 
-const TODOS = atom({
-    name: "TODOS",
+const todosState = atom({
+    name: "todosState",
     default: [],
     persist: true,
     sync: false
