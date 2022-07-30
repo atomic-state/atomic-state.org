@@ -10,7 +10,7 @@ For this tutorial, we will be building a todo app to show some features offered 
 
 ## Creating an atom
 
-Creating an atom is very simple. When you create an atom, you need to provide a `name` property, which is used to keep track of the atom's value.
+Creating an atom is very simple. When you create an atom, you neesd to provide a `name` property, which is used to keep track of the atom's value.
 You can also provide an optional `default` property, similar to providing a default value when using `useState`.
 
 We will see other properties later in this tutorial.
@@ -36,7 +36,7 @@ Now that you created your first atom, it's time to use it to store our todos. Th
 
 
 ```jsx
-import { AtomicState, atom, useAtom } from "atomic-state"
+import { atom, useAtom } from "atomic-state"
 
 const todosState = atom({
   name: "todosState",
@@ -48,11 +48,9 @@ export default function App() {
   const [todos, setTodos] = useAtom(todosState)
 
   return (
-    <AtomicState>
-      <div>
-        <p>Total todos: {todos.length}</p>
-      </div>
-    </AtomicState>
+    <div>
+      <p>Total todos: {todos.length}</p>
+    </div>
   )
 }
 ```
@@ -91,18 +89,16 @@ export default function App() {
   }
 
   return (
-    <AtomicState>
-      <div>
-        <p>Total todos: {todos.length}</p>
-        <input type="text" value={newTodo} onChange={changeTodoText} />
-        <button onClick={addTodo}>Add</button>
-        <ul>
-          {todos.map((todo) => (
-            <li key={todo.title}>{todo.title}</li>
-          ))}
-        </ul>
-      </div>
-    </AtomicState>
+    <div>
+      <p>Total todos: {todos.length}</p>
+      <input type="text" value={newTodo} onChange={changeTodoText} />
+      <button onClick={addTodo}>Add</button>
+      <ul>
+        {todos.map((todo) => (
+          <li key={todo.title}>{todo.title}</li>
+        ))}
+      </ul>
+    </div>
   )
 }
 ```
@@ -201,18 +197,16 @@ export default function App() {
   }
 
   return (
-    <AtomicState>
-      <div>
-        <p>Total todos: {todos.length}</p>
-        <input type="text" value={newTodo} onChange={changeTodoText} />
-        <button onClick={addTodo}>Add</button>
-        <ul>
-          {todos.map((todo) => (
-            <li key={todo.title}>{todo.title}</li>
-          ))}
-        </ul>
-      </div>
-    </AtomicState>
+    <div>
+      <p>Total todos: {todos.length}</p>
+      <input type="text" value={newTodo} onChange={changeTodoText} />
+      <button onClick={addTodo}>Add</button>
+      <ul>
+        {todos.map((todo) => (
+          <li key={todo.title}>{todo.title}</li>
+        ))}
+      </ul>
+    </div>
   )
 }
 ```
@@ -265,18 +259,16 @@ export default function App() {
   }
 
   return (
-    <AtomicState>
-      <div>
-        <p>Total todos: {todos.length}</p>
-        <input type="text" value={newTodo} onChange={changeTodoText} />
-        <button onClick={addTodo}>Add</button>
-        <ul>
-          {todos.map((todo) => (
-            <li key={todo.title}>{todo.title}</li>
-          ))}
-        </ul>
-      </div>
-    </AtomicState>
+    <div>
+      <p>Total todos: {todos.length}</p>
+      <input type="text" value={newTodo} onChange={changeTodoText} />
+      <button onClick={addTodo}>Add</button>
+      <ul>
+        {todos.map((todo) => (
+          <li key={todo.title}>{todo.title}</li>
+        ))}
+      </ul>
+    </div>
   )
 }
 ```
@@ -445,13 +437,11 @@ export default function App() {
   const todos = useValue(todosState)
 
   return (
-    <AtomicState>
-      <div>
-        <p>Total todos: {todos.length}</p>
-        <AddTodoForm />
-        <ShowTodos />
-      </div>
-    </AtomicState>
+    <div>
+      <p>Total todos: {todos.length}</p>
+      <AddTodoForm />
+      <ShowTodos />
+    </div>
   )
 }
 ```
@@ -521,13 +511,11 @@ export default function App() {
   const todos = useValue(todosState)
 
   return (
-    <AtomicState>
-      <div>
-        <p>Total todos: {todos.length}</p>
-        <AddTodoForm />
-        <ShowTodos />
-      </div>
-    </AtomicState>
+    <div>
+      <p>Total todos: {todos.length}</p>
+      <AddTodoForm />
+      <ShowTodos />
+    </div>
   )
 }
 ```
