@@ -14,13 +14,11 @@ export default function App() {
   const todos = useValue(todosState)
 
   return (
-    <AtomicState>
-      <div>
-        <p>Total todos: {todos.length}</p>
-        <AddTodoForm />
-        <ShowTodos />
-      </div>
-    </AtomicState>
+    <div>
+      <p>Total todos: {todos.length}</p>
+      <AddTodoForm />
+      <ShowTodos />
+    </div>
   )
 }
 ```
@@ -30,7 +28,7 @@ Now, our `App` component not only has the responsibility to show the state of ou
 A fitler can be created using the `filter` function.
 
 ```jsx
-import { AtomicState, atom, filter } from "atomic-state"
+import { atom, filter } from "atomic-state"
 
 // Our todos atom
 const todosState = atom({
@@ -87,13 +85,11 @@ export default function App() {
   const totalTodos = useFilter(totalTodosState)
 
   return (
-    <AtomicState>
-      <div>
-        <p>Total todos: {totalTodos}</p>
-        <AddTodoForm />
-        <ShowTodos />
-      </div>
-    </AtomicState>
+    <div>
+      <p>Total todos: {totalTodos}</p>
+      <AddTodoForm />
+      <ShowTodos />
+    </div>
   )
 }
 ```
@@ -114,13 +110,11 @@ And our app will now look like this:
 ```jsx
 export default function App() {
   return (
-    <AtomicState>
-      <div>
-        <ShowTotalTodos />
-        <AddTodoForm />
-        <ShowTodos />
-      </div>
-    </AtomicState>
+    <div>
+      <ShowTotalTodos />
+      <AddTodoForm />
+      <ShowTodos />
+    </div>
   )
 }
 ```
@@ -163,15 +157,13 @@ Adding it to our app:
 ```jsx
 export default function App() {
   return (
-   <AtomicState>
-      <div>
-        <ShowTotalTodos />
-        <AddTodoForm />
-        <ShowTodos />
-        <hr />
-        <ShowCompletedTodos />
-      </div>
-    </AtomicState>
+    <div>
+      <ShowTotalTodos />
+      <AddTodoForm />
+      <ShowTodos />
+      <hr />
+      <ShowCompletedTodos />
+    </div>
   )
 }
 ```
@@ -181,7 +173,7 @@ And this is our whole app so far:
 ```jsx
 import React, { useState } from "react"
 
-import { AtomicState, atom, useActions, useValue, filter, useFilter } from "atomic-state"
+import { atom, useActions, useValue, filter, useFilter } from "atomic-state"
 
 const todosState = atom({
   name: "todosState",
@@ -282,15 +274,13 @@ function ShowCompletedTodos() {
 
 export default function App() {
   return (
-    <AtomicState>
-      <div>
-        <ShowTotalTodos />
-        <AddTodoForm />
-        <ShowTodos />
-        <hr />
-        <ShowCompletedTodos />
-      </div>
-    </AtomicState>
+    <div>
+      <ShowTotalTodos />
+      <AddTodoForm />
+      <ShowTodos />
+      <hr />
+      <ShowCompletedTodos />
+    </div>
   )
 }
 

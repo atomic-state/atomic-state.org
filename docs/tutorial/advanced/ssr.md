@@ -21,8 +21,6 @@ const todosState = atom({
   // and come from the server
 })
 
-
-
 function TodoWrapper() {
 
   const todos = useValue(todosState)
