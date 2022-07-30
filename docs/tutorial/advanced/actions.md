@@ -23,6 +23,9 @@ const inputValue = atom({
   default: "",
   actions: {
     changeCase({ args, state, dispatch }) {
+
+      // You don't need to return anything
+      
       switch (args.type) {
         case "upper":
           dispatch(state.toUpperCase())

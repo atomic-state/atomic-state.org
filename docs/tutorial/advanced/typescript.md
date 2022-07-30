@@ -16,34 +16,12 @@ type TodoType = {
   completed: boolean
 }
 
-const TODOS = atom<TodoType[]>({
-  name: "TODOS",
+const todosState = atom<TodoType[]>({
+  name: "todosState",
   // If type doesn't match, typescript will be angry
   default: [],
 })
 ```
-
-
-**With a plain object**
-
-If you are using a plain object, atomic-state exposes a type: `Atom` wich, as the `atom` function, accepts two type arguments:
-
-```tsx
-import { Atom } from "atomic-state"
-
-type TodoType = {
-  id: number
-  title: string
-  completed: boolean
-}
-
-const TODOS: Atom<TodoType> = {
-  name: "TODOS",
-  // If type doesn't match, typescript will be angry
-  default: [],
-}
-```
-
 
 That's almost everything you need in atoms, because `useAtom`, `useValue` and `useDispatch` all infer the atom type when you use them, and show you errors when something's wrong.
 
@@ -65,27 +43,27 @@ type TodoType = {
 }
 
 interface ITodoActionsArgs {
+
   // This means that we need to pass
   // a todo to to our addTodo action
   addTodo: TodoType
 }
 
 
-// If you are using a plain object, you can do:
-// TODOS: Atom<TodoType[], ITodoActionsArgs> = {
-const TODOS = atom<TodoType[], ITodoActionsArgs>({
-  name: "TODOS",
+const todosState = atom<TodoType[], ITodoActionsArgs>({
+  name: "todosState",
   default: [],
   actions: {
     // 'args' will be inferred as 'TodoType'!
     addTodo({ args, dispatch }) {
       dispatch((previous) => [...previous, args])
-    },
-  },
+    }
+  }
 })
 
 function App() {
-  const todoActions = useActions(TODOS)
+  
+  const todoActions = useActions(todosState)
 
   const newTodo = {
     id: 1,
@@ -118,35 +96,16 @@ Example
 ```tsx
 import { filter } from "atomic-state"
 
-const COMPLETED = filter<TodoType[]>({
-  name: "COMPLETED",
+const completedTodosState = filter<TodoType[]>({
+  name: "completedTodosState",
   // If default does not match
   // or the get function's return type does not match
   // typescript will yell at us
   default: [],
   get({ get }) {
-    const todos = get(TODOS)
+    const todos = get(todosState)
     return todos.filter((todo) => todo.completed)
   },
 })
-
-```
-
-Or if you are using a plain object:
-
-```tsx
-import { Filter } from "atomic-state"
-
-const COMPLETED: Filter<TodoType[]> = {
-  name: "COMPLETED",
-  // If default does not match
-  // or the get function's return type does not match
-  // typescript will yell at us
-  default: [],
-  get({ get }) {
-    const todos = get(TODOS)
-    return todos.filter((todo) => todo.completed)
-  },
-}
 
 ```
